@@ -9,14 +9,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/MelodicDevelopment/circular.git"
+		"url": "git+https://github.com/MelodicDevelopment/templation.git"
 	},
 	"author": "Rick Hopkins <rick.hopkins@gmail.com>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/MelodicDevelopment/circular/issues"
+		"url": "https://github.com/MelodicDevelopment/templation/issues"
 	},
-	"homepage": "https://github.com/MelodicDevelopment/circular.git#readme",
+	"homepage": "https://github.com/MelodicDevelopment/templation.git#readme",
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
