@@ -33,7 +33,7 @@ function using(obj, code, ref, refData) {
 	let withFunc = new Function('obj', ref, `
 		let { ${propsAndMethods.join(', ')} } = obj;
 		return (${code});
-	`);
+	`).bind(obj);
 
 	/** execute the function */
 	return withFunc(obj, refData);
