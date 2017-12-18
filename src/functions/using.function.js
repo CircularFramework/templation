@@ -21,7 +21,10 @@ function using(obj, code, ref, refData) {
 	/** create list of private methods to remove */
 	let removedMethods = ['constructor', '__defineGetter__', '__defineSetter__', 'hasOwnProperty', '__lookupGetter__', '__lookupSetter__', 'isPrototypeOf', 'propertyIsEnumerable', 'toString', 'valueOf', '__proto__', 'toLocaleString'];
 	methods.forEach(m => m.startsWith('_') ? removedMethods.push(m) : null);
-	removedMethods.forEach(rm => methods.splice(methods.indexOf(rm), 1));
+	removedMethods.forEach(rm => {
+		let index = methods.indexOf(rm);
+		if (index > -1) methods.splice(index, 1);
+	});
 
 	/** concatenate the properties and methods */
 	let propsAndMethods = properties.concat(methods);
