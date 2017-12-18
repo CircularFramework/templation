@@ -16,22 +16,26 @@ function using(obj, code, ref, refData) {
 	/** get the property and method names list */
 	let properties = Object.getOwnPropertyNames(obj);
 	let proto = Object.getPrototypeOf(obj);
-	let methods = Object.getOwnPropertyNames(proto);
+	let publicMethods = Object.getOwnPropertyNames(proto);
 
 	/** create list of private methods to remove */
-	let removedMethods = ['constructor', '__defineGetter__', '__defineSetter__', 'hasOwnProperty', '__lookupGetter__', '__lookupSetter__', 'isPrototypeOf', 'propertyIsEnumerable', 'toString', 'valueOf', '__proto__', 'toLocaleString'];
-	methods.forEach(m => m.startsWith('_') ? removedMethods.push(m) : null);
-	removedMethods.forEach(rm => {
-		let index = methods.indexOf(rm);
-		if (index > -1) methods.splice(index, 1);
+	let privateMethods = ['constructor', '__defineGetter__', '__defineSetter__', 'hasOwnProperty', '__lookupGetter__', '__lookupSetter__', 'isPrototypeOf', 'propertyIsEnumerable', 'toString', 'valueOf', '__proto__', 'toLocaleString'];
+	publicMethods.forEach(m => m.startsWith('_') ? privateMethods.push(m) : null);
+	privateMethods.forEach(rm => {
+		let index = publicMethods.indexOf(rm);
+		if (index > -1) publicMethods.splice(index, 1);
 	});
 
-	/** concatenate the properties and methods */
-	let propsAndMethods = properties.concat(methods);
+	/** create a method string */
+	let methods = '';
+	publicMethods.forEach(m => {
+		methods += `let ${m} = obj.${m}.bind(obj);`;
+	});
 
 	/** create a function for executing the given code */
 	let withFunc = new Function('obj', ref, `
-		let { ${propsAndMethods.join(', ')} } = obj;
+		let { ${properties.join(', ')} } = obj;
+		${methods}
 		return (${code});
 	`).bind(obj);
 

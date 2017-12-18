@@ -43,13 +43,17 @@ let data = {
 };
 
 /** secondary data object */
-let user = {
-	name: 'Rick Hopkins',
-	email: 'rick.hopkins@gmail.com',
-	update: function() {
+class User {
+	constructor() {
+		this.name = 'Rick Hopkins';
+		this.email = 'rick.hopkins@gmail.com';
+	}
+
+	update() {
 		let newName = prompt('What would you like the new name to be?');
-		user.name = newName;
-	},
-};
+		this.name = newName;
+	}
+}
+let user = new User();
 
 export { data, user };
