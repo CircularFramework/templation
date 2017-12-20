@@ -1,6 +1,6 @@
 /** import dependencies */
 import { Observer } from './observer.class';
-import { emptyElement, createTemporaryDOM, virtualizeDOM, parseDirectives, updateDOM } from '../functions/dom.functions';
+import { emptyElement, createTemporaryDOM, virtualizeDOM, parseDirectives, updateDOM } from '../functions';
 
 /**
  * @class Compiler

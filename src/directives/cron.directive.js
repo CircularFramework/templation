@@ -1,6 +1,6 @@
 /** import dependencies */
 import { Directive } from '../classes/directive.class';
-import { using } from '../functions/using.function';
+import { using } from '../functions';
 
 /** an array of event names to look for in the crOn event directive */
 const eventTypes = [

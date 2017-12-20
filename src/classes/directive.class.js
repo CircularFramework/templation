@@ -36,7 +36,7 @@ class Directive {
 		this.isPre = () => { return _pre; };
 
 		/** @private {boolean} A boolean indicating if this directive should be processed after DOM insertion */
-		let _post = true;
+		let _post = false;
 		this.setPost = (post) => {
 			_post = post;
 			return this;

@@ -1,5 +1,6 @@
 /** import functions */
 import { using } from './using.function';
+import { templater } from './templater.function';
 
 /** create a temporary DOM object based on the template */
 function createTemporaryDOM(template, data, directives) {
@@ -14,31 +15,6 @@ function createTemporaryDOM(template, data, directives) {
 
 	/** return the virtual DOM */
 	return tempDOM;
-}
-
-/** return a function that can do template parsing */
-function templater(template, data) {
-	/** get the html */
-	let html = template.innerHTML;
-
-	/** set the pattern for replacement */
-	const re = /{{\s?([\w\W]*?)\s?}}/gmi;
-
-	/** cycle over matches */
-	let match;
-	while ((match = re.exec(html)) !== null) {
-		/** catch exceptions */
-		try {
-			/** replace the values in the html and reset the lastIndex of the regex */
-			html = html.replace(match[0], using(data, match[1]));
-			re.lastIndex = 0;
-		} catch (ex) {
-			console.log(ex);
-		}
-	}
-
-	/** reset the innerHTML */
-	template.innerHTML = html;
 }
 
 /** virtualize the passed DOM element */
@@ -229,7 +205,6 @@ function emptyElement(element) {
 /** export the DOM related functions */
 export {
 	createTemporaryDOM,
-	templater,
 	virtualizeDOM,
 	updateDOM,
 	hasChanged,

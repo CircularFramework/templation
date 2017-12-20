@@ -14,27 +14,34 @@ function using(obj, code, ref, refData) {
 	});
 
 	/** get the property and method names list */
-	let properties = Object.getOwnPropertyNames(obj);
-	let proto = Object.getPrototypeOf(obj);
-	let publicMethods = Object.getOwnPropertyNames(proto);
-
-	/** create list of private methods to remove */
-	let privateMethods = ['constructor', '__defineGetter__', '__defineSetter__', 'hasOwnProperty', '__lookupGetter__', '__lookupSetter__', 'isPrototypeOf', 'propertyIsEnumerable', 'toString', 'valueOf', '__proto__', 'toLocaleString'];
-	publicMethods.forEach(m => m.startsWith('_') ? privateMethods.push(m) : null);
-	privateMethods.forEach(rm => {
-		let index = publicMethods.indexOf(rm);
-		if (index > -1) publicMethods.splice(index, 1);
-	});
-
-	/** create a method string */
+	let properties = '';
 	let methods = '';
-	publicMethods.forEach(m => {
-		methods += `let ${m} = obj.${m}.bind(obj);`;
-	});
+	if (!Array.isArray(obj)) {
+		/** get the property names */
+		let propertyNames = Object.getOwnPropertyNames(obj);
+		propertyNames.forEach(p => {
+			properties += `var ${p} = obj.${p}; `;
+		});
+
+		/** create list of private methods to remove */
+		let proto = Object.getPrototypeOf(obj);
+		let publicMethods = Object.getOwnPropertyNames(proto);
+		let privateMethods = ['constructor', '__defineGetter__', '__defineSetter__', 'hasOwnProperty', '__lookupGetter__', '__lookupSetter__', 'isPrototypeOf', 'propertyIsEnumerable', 'toString', 'valueOf', '__proto__', 'toLocaleString'];
+		publicMethods.forEach(m => m.startsWith('_') ? privateMethods.push(m) : null);
+		privateMethods.forEach(rm => {
+			let index = publicMethods.indexOf(rm);
+			if (index > -1) publicMethods.splice(index, 1);
+		});
+
+		/** create a method string */
+		publicMethods.forEach(m => {
+			methods += `let ${m} = obj.${m}.bind(obj); `;
+		});
+	}
 
 	/** create a function for executing the given code */
 	let withFunc = new Function('obj', ref, `
-		let { ${properties.join(', ')} } = obj;
+		${properties}
 		${methods}
 		return (${code});
 	`).bind(obj);

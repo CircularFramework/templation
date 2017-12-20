@@ -1,6 +1,6 @@
 /** import dependencies */
 import { Directive } from '../classes/directive.class';
-import { using } from '../functions/using.function';
+import { using } from '../functions';
 
 /** create the directive */
 const crIfDirective = new Directive('crIf', ifCheck);
