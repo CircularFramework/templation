@@ -2,10 +2,11 @@
 	"name": "@circular/templation",
 	"version": "1.0.6",
 	"description": "A javascript / html template engine with data binding.",
-	"main": "src/index.js",
+	"main": "dist/index.js",
 	"scripts": {
-		"build:dev": "webpack",
-		"build:prod": "webpack -p --progress"
+		"build:example": "./node_modules/.bin/webpack -p --progress",
+		"build:dist": "./node_modules/.bin/babel src -d dist --source-maps --minified",
+		"postinstall": "npm run build:dist && npm run build:example"
 	},
 	"repository": {
 		"type": "git",
@@ -18,6 +19,7 @@
 	},
 	"homepage": "https://github.com/CircularFramework/templation.git#readme",
 	"devDependencies": {
+		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
 		"babel-preset-env": "^1.6.1",

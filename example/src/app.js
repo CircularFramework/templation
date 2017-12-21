@@ -1,4 +1,4 @@
-import { Templation } from '../../src';
+import { Templation } from '../../dist';
 import { data, user } from './data';
 
 /** initialize Templation */
