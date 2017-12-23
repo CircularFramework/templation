@@ -1,6 +1,6 @@
 {
 	"name": "@circular/templation",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "A javascript / html template engine with data binding.",
 	"main": "lib/index.js",
 	"scripts": {
