@@ -175,25 +175,25 @@ A series of functions are available to help you process the html in your templat
 * exec(code: string, refs: string[], data: object[], context: object);
   * Execute some code with the data and references inside the given context. Refs are the string names of properties that are used in your string code. The data array are the array of data values that will be used in your code. Context (if given) will set the context that the function will execute in.
   
-    // example
-    exec('alert(ref1)', ['ref1'], ['I am an alert message'], this);
+        // example
+        exec('alert(ref1)', ['ref1'], ['I am an alert message'], this);
     
 * using(obj: object, code: string, ref: string, refData: object);
   * Very similar to exec, except that it will make all the public properties and public methods of the passed object available inside your code. So if your object has a property called "user", that is available to use inside your code string. This is used most often inside directive parsing functions.
     
-    // example
-    function ifCheck(details, ifElement, data) {
-        /** evaluate the expression */
-        if (using(data, details.value) === false) {
-            ifElement.parentNode.removeChild(ifElement);
+        // example
+        function ifCheck(details, ifElement, data) {
+            /** evaluate the expression */
+            if (using(data, details.value) === false) {
+              ifElement.parentNode.removeChild(ifElement);
+            }
         }
-    }
     
 * templater(template: html, data: object);
   * This method will do simple handlebars value replacement.
     
-    // example
-    templater('<div>{{user.name}}</div>', {user: { name: 'Rick Hopkins' }});
+        // example
+        templater('<div>{{user.name}}</div>', {user: { name: 'Rick Hopkins' }});
     
 ### Ask if you have questions.
 So there is a lot going on in here and I'm just one person without enough time to document it all. Please feel free to ask questions and report bugs or issues. View the example code as well as source code for additional information.
