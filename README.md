@@ -160,13 +160,13 @@ To add a directive to the template engine you would do the following:
     
 ##### Additional Directive Configuration
 
-**Pre/Post Processing**
+**Pre/Post Processing**  
 A directive can be marked as pre, post, or both pre and post for processing. Pre processing means that it is processed before the compiled html is placed in the DOM. Post processing means that it will be processed after the compiled html has been placed in the DOM. An example of post processing directives is the crOn directive. Events can only be added once the actual DOM elements exist in the page.
 
-**Sub Selectors**
+**Sub Selectors**  
 Directives can have sub selectors to add additional information to the directive processing. For example, the crOn directive has many defined sub selectors that match up to event names such as click, mouseover, mouseout, etc. This allows the crOn directive to add any type of DOM event. Sub selectors are specified with a colon between them and the main selector. For example crOn:click="doSomething()".
 
-** Directive Order**
+** Directive Order**  
 Directives are processed in the order that is specified by their order property. Using the setOrder method on your directive you can position the directive in the place you'd like it to be processed in the directive chain.
 
 ### Functions
