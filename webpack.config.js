@@ -2,7 +2,7 @@ module.exports = {
 	entry: './example/src/app',
 	devtool: 'source-map',
 	output: {
-		filename: './example/example.js'
+		filename: './example/index.js'
 	},
 	module: {
 		loaders: [

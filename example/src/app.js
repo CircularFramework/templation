@@ -1,4 +1,4 @@
-import { Templation } from '../../lib';
+import { Templation } from '../../src';
 import { data, user } from './data';
 
 /** initialize Templation */

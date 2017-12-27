@@ -1,11 +1,10 @@
 {
 	"name": "@circular/templation",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "A javascript / html template engine with data binding.",
-	"main": "lib/index.js",
+	"main": "src/index.js",
 	"scripts": {
-		"build:example": "webpack -p --progress",
-		"build:lib": "babel src -d lib --source-maps --minified"
+		"build:example": "webpack -p --progress"
 	},
 	"repository": {
 		"type": "git",
